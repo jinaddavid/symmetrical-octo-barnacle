@@ -1,4 +1,4 @@
-import CandidateService from './CandidateService';
+import CandidateService from "./CandidateService";
 
 const service = new CandidateService();
 const nextAvatar = () => `https://i.pravatar.cc/300?img=${service.nextId}`;
@@ -6,12 +6,14 @@ const nextAvatar = () => `https://i.pravatar.cc/300?img=${service.nextId}`;
 const fetchDelay = 2000;
 const updateDelay = 500;
 
-const delay = timeout => new Promise((resolve) => {
-  setTimeout(resolve, timeout);
-});
+const delay = (timeout) =>
+  new Promise((resolve) => {
+    setTimeout(resolve, timeout);
+  });
 
 const addCandidate = async (params) => {
   await delay(updateDelay);
+  console.log(params, "k");
   return service.addCandidate(params);
 };
 
@@ -42,5 +44,5 @@ export default {
   fetchCandidates,
   fetchDetails,
   addCandidate,
-  removeCandidate
+  removeCandidate,
 };

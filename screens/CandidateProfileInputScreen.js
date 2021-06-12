@@ -52,11 +52,11 @@ class CandidateProfileInputScreen extends React.PureComponent {
     } = this.props;
 
     this.state = {
-      name: name || "",
-      surname: surname || "",
-      email: email || "",
-      city: city || "",
-      country: country || "",
+      name: name || "myname",
+      surname: surname || "suname",
+      email: email || "testing@g.com",
+      city: city || "omol",
+      country: country || "next",
       avatarUrl: avatarUrl || nextAvatar(),
       isNameValid: Boolean(name),
       isSurnameValid: Boolean(surname),
@@ -77,6 +77,8 @@ class CandidateProfileInputScreen extends React.PureComponent {
   };
 
   onEmailChanged = (value, isValid) => {
+    console.log(value, "value");
+    console.log(isValid, "isValid");
     this.setState({ email: value, isEmailValid: isValid });
   };
 
@@ -89,6 +91,8 @@ class CandidateProfileInputScreen extends React.PureComponent {
   };
 
   onSubmitPressed = () => {
+    // alert("heyman");
+    console.log("poppo");
     const {
       isCountryValid,
       isCityValid,
@@ -114,10 +118,12 @@ class CandidateProfileInputScreen extends React.PureComponent {
       isEmailValid,
       isNameValid,
     ].reduce((p, c) => p && c, true);
-
+    // onSubmited(candidate);
     if (isValid) {
       onSubmited(candidate);
       goBack();
+    } else {
+      console.log("Not Valid");
     }
   };
 
@@ -129,10 +135,7 @@ class CandidateProfileInputScreen extends React.PureComponent {
     return (
       <View style={styles.container}>
         <View style={styles.avatarContainer}>
-          {/* <CandidateAvatar style={styles.avatar} avatarUrl={avatarUrl} /> */}
-          <Text style={{ flex: 1, color: "red", height: 150, width: 150 }}>
-            {JSON.stringify(name)}
-          </Text>
+          <CandidateAvatar style={styles.avatar} avatarUrl={avatarUrl} />
         </View>
         <ScrollView>
           {/* <NameInput label="Name" value={name} onChanged={this.onNameChanged} /> */}

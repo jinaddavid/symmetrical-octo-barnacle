@@ -1,17 +1,26 @@
 import React from "react";
 import { View, Text, TextInput, StyleSheet } from "react-native";
 
-const CandidateTextInput = ({ validateOnChange, label, value }) => (
-  <View style={styles.container}>
-    <Text style={styles.label}>{`${label}:`}</Text>
-    <TextInput
-      style={styles.input}
-      value={value}
-      onChangeText={validateOnChange}
-      autoCorrect={false}
-    />
-  </View>
-);
+const CandidateTextInput = ({ validateOnChange, label, value, errors }) => {
+  let ErrorDisplayed = null;
+  ErrorDisplayed = errors.map((item, index) => (
+    <View key={index} style={{ flex: 1 }} key={index}>
+      <Text style={[styles.label, { color: "red" }]}>{item}</Text>
+    </View>
+  ));
+  return (
+    <View style={styles.container}>
+      <Text style={styles.label}>{`${label}:`}</Text>
+      <TextInput
+        style={styles.input}
+        value={value}
+        onChangeText={validateOnChange}
+        autoCorrect={false}
+      />
+      {ErrorDisplayed}
+    </View>
+  );
+};
 
 export default CandidateTextInput;
 
